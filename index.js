@@ -1,3 +1,3 @@
-import SplitPanel from './lib/splitPanel.jsx'
+import SplitPanel from './dist/splitPanel.js'
 
 export default SplitPanel

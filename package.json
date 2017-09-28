@@ -1,6 +1,6 @@
 {
   "name": "react-splitpanel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "react component: SplitPanel. A panel can be split to two parts with a draggable bar that can resize these two parts space.",
   "main": "index.js",
   "repository": {
