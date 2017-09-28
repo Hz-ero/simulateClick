@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "react component: SplitPanel. A panel can be split to two parts with a draggable bar that can resize these two parts space.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hz-ero/react-splitPanel.git"
+  },
   "scripts": {
     "dev": "webpack-dev-server --devtool eval --progress --config webpack.dev.config.js ",
     "build": "webpack",
@@ -16,6 +20,24 @@
   ],
   "author": "https://github.com/Hz-ero",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "env",
+      "react",
+      "stage-0"
+    ],
+    "sourceMaps": true,
+    "retainLines": true
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/test/config/CSSStub.js"
+    }
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -23,6 +45,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "jest": "^21.2.1",
     "open-browser-webpack-plugin": "0.0.5",
     "path": "^0.12.7",
     "react": "^16.0.0",
