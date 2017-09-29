@@ -1,15 +1,14 @@
 {
   "name": "react-splitpanel",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "react component: SplitPanel. A panel can be split to two parts with a draggable bar that can resize these two parts space.",
-  "main": "index.js",
+  "main": "./lib/splitPanel.jsx",
   "repository": {
     "type": "git",
     "url": "https://github.com/Hz-ero/react-splitPanel.git"
   },
   "scripts": {
-    "dev": "webpack-dev-server --devtool eval --progress --config webpack.dev.config.js ",
-    "build": "webpack",
+    "dev": "webpack-dev-server --devtool eval --progress",
     "test": "jest"
   },
   "keywords": [

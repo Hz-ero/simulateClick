@@ -1,12 +1,23 @@
 const webpack = require('webpack')
+const path = require('path')
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 module.exports = {
-  entry: './index.js',
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    contentBase: path.join(__dirname, "example"),
+    port: 8080,
+    stats: { colors: true }
+  },
+
+  entry: './example/index.js',
 
   output: {
-    filename:'./dist/splitPanel.js',
-    library: 'SplitPanel',
-    libraryTarget: 'umd'
+    path: path.join(__dirname, "example"),
+    publicPath: '/',
+    filename:'bundle.js',
   },
 
   module: {
@@ -42,10 +53,9 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
+    new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({
+      url: 'http://localhost:8080'
+    }),
   ]
 }
