@@ -1,12 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import style from './index.css'
 
 const DragBar = (props) => {
-  // option
-  const option = {
-    ifHorizontal: props.ifHorizontal || false
-  }
-
   // inline style
   const domStyle = {
     flexBasis: `${props.space}px`
@@ -14,34 +10,31 @@ const DragBar = (props) => {
 
   // modules style
   let moduleStyle = null
-
-  if (option.ifHorizontal) {
+  if (props.ifHorizontal) {
     moduleStyle = style.horizontalBar
   } else {
     moduleStyle = style.verticalBar
   }
 
-  // flag: 拖拽
-  let dragging = false
   // log: 当前位置
   let currentX, currentY
 
   const dragStart = (e) => {
-    // set flag: 进入拖拽动作
-    dragging = true
-    currentX = option.ifHorizontal ? e.clientX : null
-    currentY = option.ifHorizontal ? null : e.clientY
+    // 屏蔽右键
+    if (e.button === 2) {
+      return false
+    }
+
+    // 记录拖动时的开始位置
+    currentX = e.clientX
+    currentY = e.clientY
 
     document.addEventListener('mousemove', handleDrag)
     document.addEventListener('mouseup', dragEnd)
   }
 
   const dragEnd = (e) => {
-    // set flag: 停止拖拽动作
-    dragging = false
-    currentX = option.ifHorizontal ? e.clientX : null
-    currentY = option.ifHorizontal ? null : e.clientY
-
+    // 清除document事件监听
     document.removeEventListener('mousemove', handleDrag)
     document.removeEventListener('mouseup', dragEnd)
 
@@ -50,13 +43,15 @@ const DragBar = (props) => {
   }
 
   const handleDrag = (e) => {
+    // log: 拖拽距离
     let dragValue = 0
-    if (option.ifHorizontal) {
+    if (props.ifHorizontal) {
       dragValue = e.clientX - currentX
     } else {
       dragValue = e.clientY - currentY
     }
 
+    // 将拖拽距离传给父组件
     props.onResize(dragValue)
   }
 
@@ -68,6 +63,13 @@ const DragBar = (props) => {
       onMouseUp={(e) => dragEnd(e)}
     />
   )
+}
+
+DragBar.propTypes = {
+  ifHorizontal: PropTypes.bool.isRequired,
+  space: PropTypes.number.isRequired,
+  cleanPrevDrag: PropTypes.func.isRequired,
+  onResize: PropTypes.func.isRequired
 }
 
 export default DragBar

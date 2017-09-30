@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import style from './index.css'
 
 const ResizePanel = (props) => {
@@ -14,6 +15,11 @@ const ResizePanel = (props) => {
       {props.children}
     </div>
   )
+}
+
+ResizePanel.propTypes = {
+  space: PropTypes.number.isRequired,
+  children: PropTypes.element.isRequired
 }
 
 export default ResizePanel
